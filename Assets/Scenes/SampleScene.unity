@@ -881,7 +881,7 @@ MonoBehaviour:
   cellPrefab: {fileID: 6605496301815092217, guid: 825f0935cc0f64448abec720c0c6c4d8, type: 3}
   boardThemeName: ESC2023
   boardThemeIndex: 0
-  printAmount: 1
+  printAmount: 5
 --- !u!1 &1814430650
 GameObject:
   m_ObjectHideFlags: 0

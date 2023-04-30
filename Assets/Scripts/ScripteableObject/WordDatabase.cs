@@ -7,6 +7,7 @@ public class BingoTheme
 {
     public string word;
     public int difficulty;
+    public bool selected;
 }
 
 [System.Serializable]
