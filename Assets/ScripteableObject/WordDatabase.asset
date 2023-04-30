@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fd03c4fe23382d44bb4e6fca9ecd5d5, type: 3}
+  m_Name: WordDatabase
+  m_EditorClassIdentifier: 
+  wordDatabaseList:
+  - bingoTheme:
+    - word: 1
+      difficulty: 0
+    - word: 2
+      difficulty: 0
+    - word: 3
+      difficulty: 0
+    - word: 4
+      difficulty: 0
+    - word: 5
+      difficulty: 0
+    - word: 6
+      difficulty: 0
+    - word: 7
+      difficulty: 0
+    - word: 8
+      difficulty: 0
+    - word: 9
+      difficulty: 0
+    - word: 10
+      difficulty: 0
+    - word: 11
+      difficulty: 0
+    - word: 12
+      difficulty: 0
+    - word: 13
+      difficulty: 0
+    - word: 14
+      difficulty: 0
+    - word: 15
+      difficulty: 0
+    - word: 16
+      difficulty: 0
+    - word: 17
+      difficulty: 0
+    - word: 18
+      difficulty: 0
+    - word: 19
+      difficulty: 0
+    - word: 20
+      difficulty: 0
+    - word: 21
+      difficulty: 0
+    - word: 22
+      difficulty: 0
+    - word: 23
+      difficulty: 0
+    - word: 24
+      difficulty: 0
+    - word: 25
+      difficulty: 0
