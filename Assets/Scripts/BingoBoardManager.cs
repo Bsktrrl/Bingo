@@ -72,9 +72,7 @@ public class BingoBoardManager : MonoBehaviour
 
         List<string> temp = new List<string>();
         for (int j = 0; j < cellList.Count; j++)
-        {
             temp.Add("");
-        }
 
         for (int i = 0; i < printAmount; i++)
         {
@@ -88,37 +86,44 @@ public class BingoBoardManager : MonoBehaviour
         //----- Fill the boardList with strings from correct List -----//
 
         //Delegate words randomly
-        for (int i = 0; i < boardList.Count; i++)
+        for (int i = 0; i < printAmount; i++)
         {
-            for (int k = 0; k < boardList[i].Count;)
+            //Make a new List<string>
+            List<string> tempString = new List<string>();
+            for (int j = 0; j < cellList.Count; j++)
+                tempString.Add("");
+
+            //Calculate random indexes to use 
+            for (int j = 0; j < cellList.Count;)
             {
                 int indexCheck = Random.Range(0, wordDatabase.wordDatabaseList[boardThemeIndex].bingoTheme.Count);
+
+                //Check difficulty to see if any more can be included
+
+
+
+
 
                 if (!wordDatabase.wordDatabaseList[boardThemeIndex].bingoTheme[indexCheck].selected)
                 {
                     wordDatabase.wordDatabaseList[boardThemeIndex].bingoTheme[indexCheck].selected = true;
 
                     //print("indexCheck A: i: " + i + " | k: " + k + " = " + (indexCheck + 1));
-                    boardList[i][k] += wordDatabase.wordDatabaseList[boardThemeIndex].bingoTheme[indexCheck].word;
+
+                    tempString[j] = wordDatabase.wordDatabaseList[boardThemeIndex].bingoTheme[indexCheck].word;
                     //print("indexCheck B: i: " + i + " | k: " + k + " = " + boardList[i][k]);
 
-                    k++;
+                    j++;
                 }
             }
+
+            //Transfer data to boardList
+            boardList[i] = tempString;
 
             //Reset selected words to false
             for (int j = 0; j < wordDatabase.wordDatabaseList[boardThemeIndex].bingoTheme.Count; j++)
             {
                 wordDatabase.wordDatabaseList[boardThemeIndex].bingoTheme[j].selected = false;
-            }
-        }
-
-        //Temp
-        for (int i = 0; i < boardList.Count; i++)
-        {
-            for (int k = 0; k < boardList[i].Count; k++)
-            {
-                //print("Delegate words | i: " + i + " | j: " + k + " = " + boardList[i][k]);
             }
         }
 
@@ -143,7 +148,7 @@ public class BingoBoardManager : MonoBehaviour
                 cellList[j].GetComponentInChildren<TextMeshProUGUI>().text = boardList[i][j];
             }
 
-            yield return new WaitForSeconds(0.31f);
+            yield return new WaitForSeconds(0.01f);
 
             //Print displaying board
             if (printAmount > 0 && boardThemeName != "")
@@ -151,7 +156,7 @@ public class BingoBoardManager : MonoBehaviour
                 ScreenCapture.CaptureScreenshot(boardThemeName + " - BingoSheet " + i + ".png", 1);
             }
 
-            yield return new WaitForSeconds(0.31f);
+            yield return new WaitForSeconds(0.01f);
         }
         
         bingoMenu.SetActive(false);

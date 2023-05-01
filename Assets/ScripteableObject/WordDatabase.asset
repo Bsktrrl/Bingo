@@ -16,51 +16,164 @@ MonoBehaviour:
   - bingoTheme:
     - word: 1
       difficulty: 0
+      selected: 0
     - word: 2
       difficulty: 0
+      selected: 0
     - word: 3
       difficulty: 0
+      selected: 0
     - word: 4
       difficulty: 0
+      selected: 0
     - word: 5
       difficulty: 0
+      selected: 0
     - word: 6
       difficulty: 0
+      selected: 0
     - word: 7
       difficulty: 0
+      selected: 0
     - word: 8
       difficulty: 0
+      selected: 0
     - word: 9
       difficulty: 0
+      selected: 0
     - word: 10
       difficulty: 0
+      selected: 0
     - word: 11
       difficulty: 0
+      selected: 0
     - word: 12
       difficulty: 0
+      selected: 0
     - word: 13
       difficulty: 0
+      selected: 0
     - word: 14
       difficulty: 0
+      selected: 0
     - word: 15
       difficulty: 0
+      selected: 0
     - word: 16
       difficulty: 0
+      selected: 0
     - word: 17
       difficulty: 0
+      selected: 0
     - word: 18
       difficulty: 0
+      selected: 0
     - word: 19
       difficulty: 0
+      selected: 0
     - word: 20
       difficulty: 0
+      selected: 0
     - word: 21
       difficulty: 0
+      selected: 0
     - word: 22
       difficulty: 0
+      selected: 0
     - word: 23
       difficulty: 0
+      selected: 0
     - word: 24
       difficulty: 0
+      selected: 0
     - word: 25
       difficulty: 0
+      selected: 0
+  - bingoTheme:
+    - word: a
+      difficulty: 0
+      selected: 0
+    - word: b
+      difficulty: 0
+      selected: 0
+    - word: c
+      difficulty: 0
+      selected: 0
+    - word: d
+      difficulty: 0
+      selected: 0
+    - word: e
+      difficulty: 0
+      selected: 0
+    - word: f
+      difficulty: 0
+      selected: 0
+    - word: g
+      difficulty: 0
+      selected: 0
+    - word: h
+      difficulty: 0
+      selected: 0
+    - word: i
+      difficulty: 0
+      selected: 0
+    - word: j
+      difficulty: 0
+      selected: 0
+    - word: k
+      difficulty: 0
+      selected: 0
+    - word: l
+      difficulty: 0
+      selected: 0
+    - word: m
+      difficulty: 0
+      selected: 0
+    - word: n
+      difficulty: 0
+      selected: 0
+    - word: o
+      difficulty: 0
+      selected: 0
+    - word: p
+      difficulty: 0
+      selected: 0
+    - word: q
+      difficulty: 0
+      selected: 0
+    - word: r
+      difficulty: 0
+      selected: 0
+    - word: s
+      difficulty: 0
+      selected: 0
+    - word: t
+      difficulty: 0
+      selected: 0
+    - word: u
+      difficulty: 0
+      selected: 0
+    - word: v
+      difficulty: 0
+      selected: 0
+    - word: w
+      difficulty: 0
+      selected: 0
+    - word: x
+      difficulty: 0
+      selected: 0
+    - word: y
+      difficulty: 0
+      selected: 0
+    - word: z
+      difficulty: 0
+      selected: 0
+    - word: "\xE6"
+      difficulty: 0
+      selected: 0
+    - word: "\xF8"
+      difficulty: 0
+      selected: 0
+    - word: "\xE5"
+      difficulty: 0
+      selected: 0
