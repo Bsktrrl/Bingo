@@ -13,5 +13,6 @@ public class BingoTheme
 [System.Serializable]
 public class WordDatabase
 {
+    public string themeName;
     public List<BingoTheme> bingoTheme = new List<BingoTheme>();
 }
