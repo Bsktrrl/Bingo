@@ -9,6 +9,7 @@ public class BingoBoardManager : MonoBehaviour
     #region Variables
     EditBingoMenu editBingoMenu;
     DataManager dataManager;
+    PrintListMenu printListMenu;
 
     [Header("Scriptable Object")]
     [SerializeField] SO_WordDatabase wordDatabase;
@@ -45,6 +46,7 @@ public class BingoBoardManager : MonoBehaviour
     {
         editBingoMenu = FindObjectOfType<EditBingoMenu>();
         dataManager = FindObjectOfType<DataManager>();
+        printListMenu = FindObjectOfType<PrintListMenu>();
 
         bingoMenu.SetActive(true);
         InstantiateBoard();
@@ -57,6 +59,13 @@ public class BingoBoardManager : MonoBehaviour
 
 
         warningMessage.text = "";
+    }
+    private void Update()
+    {
+        for (int i = 0; i < difficultyArrange.Count - 1; i++)
+        {
+            difficultyArrange[i + 1] = printListMenu.difficulty_amount[i];
+        }
     }
 
 
@@ -264,6 +273,8 @@ public class BingoBoardManager : MonoBehaviour
     public void PrintListButton()
     {
         ExitBingoElements();
+
+        printListMenu.InstantiateBingoLists();
 
         editList_Menu.SetActive(false);
         printList_Menu.SetActive(true);
