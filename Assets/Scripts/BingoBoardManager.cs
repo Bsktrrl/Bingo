@@ -6,6 +6,10 @@ using UnityEngine.UIElements;
 
 public class BingoBoardManager : MonoBehaviour
 {
+    #region Variables
+    EditBingoMenu editBingoMenu;
+    DataManager dataManager;
+
     [Header("Scriptable Object")]
     [SerializeField] SO_WordDatabase wordDatabase;
 
@@ -13,6 +17,9 @@ public class BingoBoardManager : MonoBehaviour
     [SerializeField] GameObject registerMenu;
     [SerializeField] GameObject bingoMenu;
     [SerializeField] GameObject bingoBoard;
+
+    [SerializeField] GameObject editList_Menu;
+    [SerializeField] GameObject printList_Menu;
 
     [Header("Prefabs")]
     [SerializeField] GameObject cellPrefab;
@@ -28,16 +35,22 @@ public class BingoBoardManager : MonoBehaviour
 
     [SerializeField] List<int> difficultyArrange;
     [SerializeField] List<int> difficultyCheckList = new List<int>();
+    #endregion
 
 
     //--------------------
 
 
-    private void Start()
+    private void Awake()
     {
+        editBingoMenu = FindObjectOfType<EditBingoMenu>();
+        dataManager = FindObjectOfType<DataManager>();
+
         bingoMenu.SetActive(true);
         InstantiateBoard();
         bingoMenu.SetActive(false);
+        editList_Menu.SetActive(false);
+        printList_Menu.SetActive(false);
 
 
         //-----
@@ -128,7 +141,6 @@ public class BingoBoardManager : MonoBehaviour
 
         #endregion
 
-
         //----- Print x amount of boards from a selected theme -----//
 
         //Generate a list of all boards to be printed
@@ -210,7 +222,6 @@ public class BingoBoardManager : MonoBehaviour
         //print all boards
         StartCoroutine(PrintScreen(boardList));
     }
-
     IEnumerator PrintScreen(List<List<string>> boardList)
     {
         bingoMenu.SetActive(true);
@@ -237,5 +248,38 @@ public class BingoBoardManager : MonoBehaviour
         
         bingoMenu.SetActive(false);
         registerMenu.SetActive(true);
+    }
+
+
+    //--------------------
+
+
+    public void EditListButton()
+    {
+        ExitBingoElements();
+
+        editList_Menu.SetActive(true);
+        printList_Menu.SetActive(false);
+    }
+    public void PrintListButton()
+    {
+        ExitBingoElements();
+
+        editList_Menu.SetActive(false);
+        printList_Menu.SetActive(true);
+    }
+
+
+    //--------------------
+
+    
+    public void ExitBingoElements()
+    {
+        for (int i = 0; i < editBingoMenu.bingoElementDisplayList.Count; i++)
+            editBingoMenu.bingoElementDisplayList[i].GetComponent<BingoElementPrefab>().DestroyElementPrefab();
+
+        editBingoMenu.bingoElementDisplayList.Clear();
+
+        editBingoMenu.bingoElementDisplay_Parent.GetComponent<RectTransform>().sizeDelta = new Vector2(700, 10);
     }
 }

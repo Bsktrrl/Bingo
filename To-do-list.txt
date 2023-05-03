@@ -1,0 +1,13 @@
+UI:
+- Lage meny for å registrere en liste (BingoTheme)
+- Lage meny for å legge til/slette elementer i lista
+	- Legge til ord/setning
+	- Legge til difficulty
+
+- Kontrollere at UI scaler med screen size
+- Lage en meny hvor man kan åpne lister og se elementene i dem
+
+
+Kode:
+- Lage ny liste-variabel som erstatter SO_, slik at den kan brukes til lagring/endring av data i en exe.fil
+- Lage mulighet for ulike BingoBoard-varianter (5x5, 4x4, 6x6 osv.)
