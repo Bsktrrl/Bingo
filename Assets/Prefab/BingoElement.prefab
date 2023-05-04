@@ -57,6 +57,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bingoElementName: {fileID: 1876729120093169451}
   bingoElementInputFeld: {fileID: 2042897692471056556}
+  difficulty: 0
   DifficultyButtons:
   - {fileID: 7118148833288865264}
   - {fileID: 4478426433179826473}
@@ -64,7 +65,7 @@ MonoBehaviour:
   - {fileID: 2245585147668792096}
   - {fileID: 3733361035101113314}
   - {fileID: 3587206729998496376}
-  difficulty: 0
+  index: 0
 --- !u!1 &888323269365279854
 GameObject:
   m_ObjectHideFlags: 0
@@ -2009,7 +2010,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 10, y: 10, z: 10, w: 10}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

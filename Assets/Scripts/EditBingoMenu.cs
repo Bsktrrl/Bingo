@@ -105,4 +105,31 @@ public class EditBingoMenu : MonoBehaviour
             return;
         }
     }
+
+    public void InstantiateBingoNameLists()
+    {
+        #region Reset bingoNameDisplayList
+        for (int i = 0; i < bingoNameDisplayList.Count; i++)
+            bingoNameDisplayList[i].GetComponent<BingoNamePrefab>().DestroyPrefab();
+
+        bingoNameDisplayList.Clear();
+
+        bingoNameDisplay_Parent.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 10);
+        #endregion
+
+        for (int i = 0; i < dataManager.bingoList.Count; i++)
+        {
+            bingoNameDisplay_Parent.GetComponent<RectTransform>().sizeDelta = new Vector2(400, bingoNameDisplay_Parent.GetComponent<RectTransform>().sizeDelta.y + 110);
+
+            bingoNameDisplayList.Add(Instantiate(bingoNameDisplay_Prefab, Vector3.zero, Quaternion.identity) as GameObject);
+            bingoNameDisplayList[bingoNameDisplayList.Count - 1].transform.parent = bingoNameDisplay_Parent.transform;
+            bingoNameDisplayList[bingoNameDisplayList.Count - 1].GetComponent<BingoNamePrefab>().bingoName.text = dataManager.bingoList[i].bingoName;
+            bingoNameDisplayList[bingoNameDisplayList.Count - 1].name = dataManager.bingoList[i].bingoName;
+
+            if (bingoNameDisplay_Parent.GetComponent<RectTransform>().sizeDelta.y <= 1030)
+                BingoViewRect.GetComponent<ScrollRect>().vertical = false;
+            else
+                BingoViewRect.GetComponent<ScrollRect>().vertical = true;
+        }
+    }
 }

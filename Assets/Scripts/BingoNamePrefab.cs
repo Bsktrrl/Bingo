@@ -44,8 +44,24 @@ public class BingoNamePrefab : MonoBehaviour
 
     public void AddButton()
     {
-        SelectButton();
+        //SelectButton();
 
+        //Check if any Bingo is Active
+        #region 
+        //int activeCheck = 0;
+        //for (int i = 0; i < editBingoMenu.bingoNameDisplayList.Count; i++)
+        //{
+        //    if (editBingoMenu.bingoNameDisplayList[i].GetComponent<BingoNamePrefab>().isActive)
+        //    {
+        //        activeCheck++;
+        //    }
+        //}
+
+        if (!gameObject.GetComponent<BingoNamePrefab>().isActive)
+        { return; }
+        #endregion
+
+        //Add an element to the "editBingoMenu.bingoElementDisplayList"
         for (int i = 0; i < dataManager.bingoList.Count; i++)
         {
             if (dataManager.bingoList[i].bingoName == bingoName.text)
@@ -109,17 +125,28 @@ public class BingoNamePrefab : MonoBehaviour
     }
     public void SelectButton()
     {
-        //if (isActive)
-        //{ return; }
-
         #region Change active prefab
-        for (int i = 0; i < dataManager.bingoList.Count; i++)
-            editBingoMenu.bingoNameDisplayList[i].GetComponent<BingoNamePrefab>().isActive = false;
+        if (isActive)
+        {
+            for (int i = 0; i < dataManager.bingoList.Count; i++)
+                editBingoMenu.bingoNameDisplayList[i].GetComponent<BingoNamePrefab>().isActive = false;
 
-        isActive = true;
+            isActive = false;
+
+            bingoBoardManager.ExitBingoElements();
+
+            return;
+        }
+        else
+        {
+            for (int i = 0; i < dataManager.bingoList.Count; i++)
+                editBingoMenu.bingoNameDisplayList[i].GetComponent<BingoNamePrefab>().isActive = false;
+
+            isActive = true;
+
+            bingoBoardManager.ExitBingoElements();
+        }
         #endregion
-
-        bingoBoardManager.ExitBingoElements();
 
         for (int i = 0; i < dataManager.bingoList.Count; i++)
         {
@@ -164,6 +191,11 @@ public class BingoNamePrefab : MonoBehaviour
         }
 
         bingoBoardManager.ExitBingoElements();
+        Destroy(gameObject);
+    }
+
+    public void DestroyPrefab()
+    {
         Destroy(gameObject);
     }
 }

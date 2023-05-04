@@ -20,7 +20,21 @@ public class Bingo
 }
 
 [System.Serializable]
-public class DataManager : MonoBehaviour
+public class DataManager : MonoBehaviour, IDataPersistance
 {
     public List<Bingo> bingoList = new List<Bingo>();
+
+
+    //--------------------
+
+
+    public void LoadData(GameData gameData)
+    {
+        this.bingoList = gameData.bingoList;
+    }
+
+    public void SaveData(ref GameData gameData)
+    {
+        gameData.bingoList = this.bingoList;
+    }
 }

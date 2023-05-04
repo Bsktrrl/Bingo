@@ -1,5 +1,4 @@
 UI:
-- Lage Print-menu som benytter data fra listene som forbruker har laget
 - Kontrollere at UI scaler med screen size
 
 

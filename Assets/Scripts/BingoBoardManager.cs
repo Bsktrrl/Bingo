@@ -11,9 +11,6 @@ public class BingoBoardManager : MonoBehaviour
     DataManager dataManager;
     PrintListMenu printListMenu;
 
-    [Header("Scriptable Object")]
-    [SerializeField] SO_WordDatabase wordDatabase;
-
     [Header("Canvases")]
     [SerializeField] GameObject registerMenu;
     [SerializeField] GameObject bingoMenu;
@@ -48,6 +45,8 @@ public class BingoBoardManager : MonoBehaviour
         dataManager = FindObjectOfType<DataManager>();
         printListMenu = FindObjectOfType<PrintListMenu>();
 
+        editList_Menu.SetActive(true);
+        printList_Menu.SetActive(true);
         bingoMenu.SetActive(true);
         InstantiateBoard();
         bingoMenu.SetActive(false);
@@ -62,9 +61,29 @@ public class BingoBoardManager : MonoBehaviour
     }
     private void Update()
     {
-        for (int i = 0; i < difficultyArrange.Count - 1; i++)
+        //Get correct boardThemeIndex
+        for (int i = 0; i < printListMenu.bingoDisplayList.Count; i++)
         {
-            difficultyArrange[i + 1] = printListMenu.difficulty_amount[i];
+            if (printListMenu.bingoDisplayList[i].GetComponent<BingoViewPrefab>().isActive)
+            {
+                for (int j = 0; j < editBingoMenu.bingoNameDisplayList.Count; j++)
+                {
+                    if (printListMenu.bingoDisplayList[i].GetComponent<BingoViewPrefab>().bingoName.text == editBingoMenu.bingoNameDisplayList[j].GetComponent<BingoNamePrefab>().bingoName.text)
+                    {
+                        boardThemeIndex = j;
+                    }
+                }
+            }
+        }
+
+        //Get correct printAmount
+        printAmount = printListMenu.printAmount;
+
+        //Get correct difficultyArrange
+        difficultyArrange[0] = 0;
+        for (int i = 1; i < difficultyArrange.Count; i++)
+        {
+            difficultyArrange[i] = printListMenu.difficulty_amount[i - 1];
         }
     }
 
@@ -118,9 +137,9 @@ public class BingoBoardManager : MonoBehaviour
         {
             tempInt = 0;
 
-            for (int j = 0; j < wordDatabase.wordDatabaseList[boardThemeIndex].bingoTheme.Count; j++)
+            for (int j = 0; j < dataManager.bingoList[boardThemeIndex].bingoElements.Count; j++)
             {
-                if (wordDatabase.wordDatabaseList[boardThemeIndex].bingoTheme[j].difficulty == i)
+                if (dataManager.bingoList[boardThemeIndex].bingoElements[j].difficulty == i)
                 {
                     tempInt++;
                 }
@@ -128,9 +147,8 @@ public class BingoBoardManager : MonoBehaviour
 
             if (tempInt < difficultyArrange[i])
             {
-                warningMessage.text = "You have too few words of difficulty " + i + " in your \"" + wordDatabase.wordDatabaseList[boardThemeIndex].themeName + "\" list to be able to fill a Bingo board with the difficulty amount you have selected";
-                //print("tempInt (" + tempInt + ") is less than the number in difficultyArrange[" + i + "] (" + difficultyArrange[i] + ")");
-
+                warningMessage.text = "You have too few words of difficulty " + i + " in your \"" + dataManager.bingoList[boardThemeIndex].bingoName + " list\".  to be able to fill a Bingo board with the difficulty amount you have selected";
+                
                 return;
             }
         }
@@ -139,9 +157,9 @@ public class BingoBoardManager : MonoBehaviour
 
         //Exit Print if wordDatabaseList contain of too few elements, based on the selected BingoBordSize
         #region
-        if (wordDatabase.wordDatabaseList[boardThemeIndex].bingoTheme.Count < cellList.Count)
+        if (dataManager.bingoList[boardThemeIndex].bingoElements.Count < cellList.Count)
         {
-            warningMessage.text = "You have too few words in your \"" + wordDatabase.wordDatabaseList[boardThemeIndex].themeName + "\" list to be able to fill a Bingo board of your selected size";
+            warningMessage.text = "You have too few words in your \"" + dataManager.bingoList[boardThemeIndex].bingoName + "\" list to be able to fill a Bingo board of your selected size";
             //print("Too few elements in the selected bingoTheme, based on the BingoBoardSize");
 
             return; 
@@ -188,21 +206,21 @@ public class BingoBoardManager : MonoBehaviour
             //Calculate random indexes to use 
             for (int j = 0; j < cellList.Count;)
             {
-                int indexCheck = Random.Range(0, wordDatabase.wordDatabaseList[boardThemeIndex].bingoTheme.Count);
+                int indexCheck = Random.Range(0, dataManager.bingoList[boardThemeIndex].bingoElements.Count);
 
                 //Check if indexCheck has already been used
-                if (!wordDatabase.wordDatabaseList[boardThemeIndex].bingoTheme[indexCheck].selected)
+                if (!dataManager.bingoList[boardThemeIndex].bingoElements[indexCheck].selected)
                 {
                     //Check difficulty to see if selected indexCheck can be included
                     for (int k = 1; k < difficultyArrange.Count; k++)
                     {
-                        if (wordDatabase.wordDatabaseList[boardThemeIndex].bingoTheme[indexCheck].difficulty == k
+                        if (dataManager.bingoList[boardThemeIndex].bingoElements[indexCheck].difficulty == k
                             && difficultyCheckList[k] < difficultyArrange[k])
                         {
                             //Set selected word in correct element position in tempString(List)
-                            wordDatabase.wordDatabaseList[boardThemeIndex].bingoTheme[indexCheck].selected = true;
+                            dataManager.bingoList[boardThemeIndex].bingoElements[indexCheck].selected = true;
 
-                            tempString[j] = wordDatabase.wordDatabaseList[boardThemeIndex].bingoTheme[indexCheck].word;
+                            tempString[j] = dataManager.bingoList[boardThemeIndex].bingoElements[indexCheck].word;
 
                             j++;
                             difficultyCheckList[k]++;
@@ -217,9 +235,9 @@ public class BingoBoardManager : MonoBehaviour
             boardList[i] = tempString;
 
             //Reset selected words to false
-            for (int j = 0; j < wordDatabase.wordDatabaseList[boardThemeIndex].bingoTheme.Count; j++)
+            for (int j = 0; j < dataManager.bingoList[boardThemeIndex].bingoElements.Count; j++)
             {
-                wordDatabase.wordDatabaseList[boardThemeIndex].bingoTheme[j].selected = false;
+                dataManager.bingoList[boardThemeIndex].bingoElements[j].selected = false;
             }
         }
         #endregion
@@ -247,9 +265,9 @@ public class BingoBoardManager : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
 
             //Print displaying board
-            if (printAmount > 0 && wordDatabase.wordDatabaseList[boardThemeIndex].themeName != "")
+            if (printAmount > 0 && dataManager.bingoList[boardThemeIndex].bingoName != "")
             {
-                ScreenCapture.CaptureScreenshot(wordDatabase.wordDatabaseList[boardThemeIndex].themeName + " - BingoSheet " + i + ".png", 1);
+                ScreenCapture.CaptureScreenshot(dataManager.bingoList[boardThemeIndex].bingoName + " - BingoSheet " + i + ".png", 1);
             }
 
             yield return new WaitForSeconds(0.01f);
@@ -267,6 +285,8 @@ public class BingoBoardManager : MonoBehaviour
     {
         ExitBingoElements();
 
+        editBingoMenu.InstantiateBingoNameLists();
+
         editList_Menu.SetActive(true);
         printList_Menu.SetActive(false);
     }
@@ -278,6 +298,14 @@ public class BingoBoardManager : MonoBehaviour
 
         editList_Menu.SetActive(false);
         printList_Menu.SetActive(true);
+    }
+    public void ExitProgramButton()
+    {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+
+        Application.Quit();
     }
 
 
