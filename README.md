@@ -9,5 +9,5 @@ It isn't pretty, but it makes great Bingo Boards to print without using too much
 <br>
 <br>
 
-When making a new word, you are able to tag the word's difficulty. You are then able to select how many of each difficulty to print on each Bingo Board, to make the competition as fair as possible for everyone.
+When making a new word, you are able to tag the word's difficulty. You are then able to select how many of each difficulty to print on each Bingo Board, to make the competition as fair as possible for everyone.<br>
 <img src="https://github.com/Bsktrrl/Bsktrrl.github.io/blob/main/images/BingoGenerator/Print.jpg" width="40%"/><br>
