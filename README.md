@@ -11,9 +11,9 @@ You are then able to select how many of each difficulty to print on each Bingo B
 You are also able to select the amount of Bingo Boards you want to print<br>
 <br>
 <br>
-<table width="10%">
+<table width="40%">
       <tr><td><b>Make a Bingo Word Pool</b></td>
       <td><b>Print Bingo Boards</b></td></tr>
-      <tr><td><img src="https://github.com/Bsktrrl/Bsktrrl.github.io/blob/main/images/BingoGenerator/Header2.jpg" width="40%"/></td>
-      <td><img src="https://github.com/Bsktrrl/Bsktrrl.github.io/blob/main/images/BingoGenerator/Print.jpg" width="40%"/></td></tr>
+      <tr><td><img src="https://github.com/Bsktrrl/Bsktrrl.github.io/blob/main/images/BingoGenerator/Header2.jpg" width="75%"/></td>
+      <td><img src="https://github.com/Bsktrrl/Bsktrrl.github.io/blob/main/images/BingoGenerator/Print.jpg" width="75%"/></td></tr>
  </table>
